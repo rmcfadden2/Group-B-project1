@@ -12,44 +12,50 @@
 
 using namespace std;
 
+//Distance class(should be stored in a city, which should be the start point)
 class Distance {
 private:
-    string destinationName;
-    double distance;
+    string destinationName; //the destination city name
+    double distance;        //the distance between start point and detination
 
 public:
-    Distance(const std::string& n, double d) : destinationName(n), distance(d) {}
+    Distance(const std::string& n, double d) : destinationName(n), distance(d) {}   //distance constructor
 
+    //Getter
     string getDestinationName() const { return destinationName; }
     double getdistance() const { return distance; }
 };
 
+//PopularFood Class
 class PopularFood {
 private:
-    string name;
-    double price;
+    string name;    //name of each popular food
+    double price;   //price of the food
 
 public:
-    PopularFood(const std::string& n, double p) : name(n), price(p) {}
+    PopularFood(const std::string& n, double p) : name(n), price(p) {}  //PopularFood constructor
 
+    //Getter
     string getName() const { return name; }
     double getPrice() const { return price; }
 };
 
+//City class
 class City {
 private:
-    string name;
-    vector<Distance> distances;
-    vector<PopularFood> foods;
+    string name;                    //name of the city
+    vector<Distance> distances;     //distance to different destination cities
+    vector<PopularFood> foods;      //list of local food and their price
 
 public:
     // constructor
-    City(const string& n, double lat, double lon)
+    City(const string& n)           //city constructor
         : name(n){}
 
     // Getter
-    std::string getName() const { return name; }
+    string getName() const { return name; }
 
+    //adder
     void addFood(const PopularFood& food) 
     {
         foods.push_back(food);
@@ -58,20 +64,38 @@ public:
     {
         distances.push_back(distance);
     }
+
+    //print function
+    void printDistances() const 
+    {
+        cout << "Distances from " << name << ":\n";
+        if (distances.empty()) 
+        {
+            cout << "  No distances recorded.\n";
+            return;
+        }
+        for (const auto& d : distances) 
+        {
+            cout << "  to  " << d.getDestinationName()
+                      << ": " << d.getdistance() << " km\n";
+        }
+    }
 };
 
 // find the city and return the ptr to city
 City* findCity(std::vector<City> &cities, const std::string &name) 
 {
-    for (auto &c : cities) {
-        if (c.getName() == name) {
+    for (auto &c : cities) 
+    {
+        if (c.getName() == name) 
+        {
             return &c;
         }
     }
     return nullptr; //if not found
 }
 
-
+//load all the distance information from input file to database
 void loadDistances(const std::string &filename, std::vector<City> &cities) 
 {
     ifstream file(filename);
@@ -118,4 +142,5 @@ void loadDistances(const std::string &filename, std::vector<City> &cities)
 
     file.close();
 }
+
 
