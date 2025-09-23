@@ -1,1 +1,8 @@
+Files to look at:
+main.cpp
+mainwindow.h
+mainwindow.cpp
+cities.csv
+build/Desktop_Qt_6_9_2_macOS/checkoutdialogue.h
+build/Desktop_Qt_6_9_2_macOS/checkoutdialogue.cpp
 
