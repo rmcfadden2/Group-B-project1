@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <cctype>
 
+const std::string ADMIN_USERNAME = "admin";
+const std::string ADMIN_PASSWORD = "password123";
+
 City* findCity(std::vector<City>& cities, const std::string& name) {
     for (auto& c : cities) {
         if (c.getName() == name) {
@@ -173,4 +176,191 @@ double calculateTotalDistance(const std::vector<std::string>& route, const std::
         }
     }
     return totalDistance;
+}
+/**
+ * @brief Prompts user for admin credentials and checks against constants.
+ * @return true if credentials are correct, false otherwise.
+ */
+bool adminLogin() {
+    std::string user, pass;
+    std::cout << "\n--- Admin Login ---\n";
+    std::cout << "Enter Username: ";
+    std::cin >> user;
+    std::cout << "Enter Password: ";
+    std::cin >> pass;
+    std::cin.ignore(10000, '\n'); // Clear buffer
+
+    // Verify the user inputs the admin user and password is correct and let the user view the admin view, and if incorrect deny access
+    if (user == ADMIN_USERNAME && pass == ADMIN_PASSWORD) {
+        std::cout << "\nLogin Successful. Welcome, Administrator.\n";
+        return true;
+    } else {
+        std::cout << "\nLogin Failed. Invalid username or password.\n";
+        return false; // If the password is wrong, deny access to the user
+    }
+}
+
+// ---------------------- City Maintenance ----------------------
+
+/**
+ * @brief Admin can add new cities
+ */
+void adminAddCity(std::vector<City>& cities) {
+    std::string newCityName;
+    std::cout << "\n--- Add New City ---\n";
+    std::cout << "Enter the name of the new city: ";
+    std::getline(std::cin, newCityName);
+
+    if (findCity(cities, newCityName)) {
+        std::cout << "Error: City '" << newCityName << "' already exists.\n";
+        return;
+    }
+
+    cities.emplace_back(newCityName);
+    std::cout << "City '" << newCityName << "' added successfully!\n";
+}
+
+// ---------------------- Food Maintenance ----------------------
+
+/**
+ * @brief Admin can edit any food prices in specific cities
+ */
+void adminEditFoodPrice(City* city) {
+    city->printFoods();
+    std::string foodName;
+    double newPrice;
+    std::cout << "Enter name of food to edit price for: ";
+    std::getline(std::cin, foodName);
+
+    PopularFood* food = city->findFood(foodName);
+    if (!food) {
+        std::cout << "Food '" << foodName << "' not found in " << city->getName() << ".\n";
+        return;
+    }
+
+    std::cout << "Enter new price for " << food->getName() << " (Current: $" << food->getPrice() << "): $";
+    std::cin >> newPrice;
+    if (std::cin.fail() || newPrice < 0) {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "Invalid price. Operation aborted.\n";
+        return;
+    }
+    std::cin.ignore(10000, '\n');
+
+    food->setPrice(newPrice);
+    std::cout << "Price for " << food->getName() << " updated successfully to $" << newPrice << ".\n";
+}
+
+/**
+ * @brief Admin can add new foods to specific cities
+ */
+void adminAddFoodToCity(City* city) {
+    std::string foodName;
+    double price;
+    std::cout << "\n--- Add New Food to " << city->getName() << " ---\n";
+    std::cout << "Enter new food name: ";
+    std::getline(std::cin, foodName);
+
+    if (city->findFood(foodName)) {
+        std::cout << "Food '" << foodName << "' already exists in this city.\n";
+        return;
+    }
+
+    std::cout << "Enter price: $";
+    std::cin >> price;
+    if (std::cin.fail() || price < 0) {
+        std::cin.clear();
+        std::cin.ignore(10000, '\n');
+        std::cout << "Invalid price. Operation aborted.\n";
+        return;
+    }
+    std::cin.ignore(10000, '\n');
+
+    city->addFood(PopularFood(foodName, price));
+    std::cout << "Food '" << foodName << "' added to " << city->getName() << " successfully!\n";
+}
+
+/**
+ * @brief Admin can delete foods from specific cities
+ */
+void adminDeleteFoodFromCity(City* city) {
+    city->printFoods();
+    std::string foodName;
+    std::cout << "Enter name of food to DELETE: ";
+    std::getline(std::cin, foodName);
+
+    if (city->deleteFood(foodName)) {
+        std::cout << "Food '" << foodName << "' deleted from " << city->getName() << ".\n";
+    } else {
+        std::cout << "Food '" << foodName << "' not found in " << city->getName() << ".\n";
+    }
+}
+
+/**
+ * @brief Food maintenance submenu, allows selecting a city first.
+ */
+void adminFoodMaintenance(std::vector<City>& cities) {
+    City* city = selectCity(cities);
+    if (!city) {
+        std::cout << "City selection failed.\n";
+        return;
+    }
+
+    int choice;
+    do {
+        std::cout << "\n--- Food Maintenance for " << city->getName() << " ---\n";
+        std::cout << "1. Edit Food Price\n";
+        std::cout << "2. Add New Food\n";
+        std::cout << "3. Delete Food\n";
+        std::cout << "4. Back to Main Admin Menu\n";
+        std::cout << "Enter choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            choice = 0; // Force retry
+        } else {
+            std::cin.ignore(10000, '\n');
+        }
+
+        switch (choice) {
+            case 1: adminEditFoodPrice(city); break;
+            case 2: adminAddFoodToCity(city); break;
+            case 3: adminDeleteFoodFromCity(city); break;
+            case 4: std::cout << "Returning...\n"; break;
+            default: std::cout << "Invalid choice. Please try again.\n"; break;
+        }
+    } while (choice != 4);
+}
+
+/**
+ * @brief Main Admin View, accessible after successful login.
+ */
+void adminMenu(std::vector<City>& cities) {
+    int choice;
+    do {
+        std::cout << "\n--- Administrator View ---\n";
+        std::cout << "1. Add New City\n";
+        std::cout << "2. Maintain Food Database (Add/Edit/Delete Food & Price)\n";
+        std::cout << "3. Logout\n";
+        std::cout << "Enter choice: ";
+        std::cin >> choice;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            choice = 0; // Force retry
+        } else {
+            std::cin.ignore(10000, '\n');
+        }
+
+        switch (choice) {
+            case 1: adminAddCity(cities); break;
+            case 2: adminFoodMaintenance(cities); break;
+            case 3: std::cout << "Logging out...\n"; break;
+            default: std::cout << "Invalid choice. Please try again.\n"; break;
+        }
+    } while (choice != 3);
 }
