@@ -5,12 +5,6 @@
 #include <sstream>
 using namespace std;
 
-struct newCities
-{
-    string city;
-    int distance;
-};
-
 // find the distance between two cities
 void addCity(string newCity)
 {
@@ -52,6 +46,55 @@ void addCity(string newCity)
 
     return;
 }
+
+void deleteCity(string newCity)
+{
+    ifstream inputFile("distances.csv");
+    ofstream tempFile("temp.csv");
+
+    if (!inputFile.is_open() || !tempFile.is_open()) {
+        cerr << "Error: Could not open files!" << endl;
+        return;
+    }
+
+    string line;
+    bool found = false;
+
+    while (getline(inputFile, line))
+    {
+        stringstream ss(line);
+        string city1, city2, distance;
+
+        getline(ss, city1, ',');
+        getline(ss, city2, ',');
+        getline(ss, distance, ',');
+
+        // If this line defines a new city
+        if (city1 != newCity && city2 != newCity)
+        {
+            tempFile << line << endl;
+        }
+        // If this is a city line
+        else
+        {
+            found = true;
+        }
+    }
+
+    inputFile.close();
+    tempFile.close();
+
+    remove("distances.csv");
+    rename("temp.csv", "distances.csv");
+
+    if (found)
+        cout << "deleted " << newCity << endl;
+    else
+        cout << "Could not find " << newCity << " in the file." << endl;
+
+}
+
+
 
 void editFoodPrice(string foodItem, double newPrice)
 {
@@ -204,9 +247,11 @@ int main()
 
     //editFoodPrice("Pretzels", 10.01);
 
-    //deleteFood("Pretzels");
+    //deleteFood("Pretzels");(
 
-    addFood("Berlin", "Cheese", 6.70);
+    //addFood("Berlin", "Cheese", 6.70);
+
+    deleteCity("Vienna");
 
     return 0;
 }
