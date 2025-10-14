@@ -9,7 +9,11 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    admincitiesedit.cpp \
+    adminfoodedit.cpp \
     adminloginwindow.cpp \
+    adminmainwindow.cpp \
+    adminutilities.cpp \
     checkoutdialog.cpp \
     confirmselectedcities.cpp \
     guestmainwindow.cpp \
@@ -25,7 +29,11 @@ SOURCES += \
     pariswindow1.cpp
 
 HEADERS += \
+    admincitiesedit.h \
+    adminfoodedit.h \
     adminloginwindow.h \
+    adminmainwindow.h \
+    adminutilities.h \
     checkoutdialog.h \
     confirmselectedcities.h \
     guestmainwindow.h \
@@ -40,7 +48,10 @@ HEADERS += \
     pariswindow1.h
 
 FORMS += \
+    admincitiesedit.ui \
+    adminfoodedit.ui \
     adminloginwindow.ui \
+    adminmainwindow.ui \
     checkoutdialog.ui \
     confirmselectedcities.ui \
     guestmainwindow.ui \
@@ -63,3 +74,4 @@ DISTFILES += \
     admin.txt \
     distances.txt \
     foods.txt \
+    new_cities.txt

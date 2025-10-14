@@ -29,7 +29,7 @@ private slots:
 
 private:
     Ui::adminLoginWindow *ui;
-    vector<Admin> admin;
+    vector<Admin> admins;
 };
 
 #endif // ADMINLOGINWINDOW_H

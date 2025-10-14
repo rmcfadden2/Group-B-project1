@@ -101,6 +101,8 @@ public:
 
         loginButton = new QPushButton(verticalLayoutWidget);
         loginButton->setObjectName("loginButton");
+        loginButton->setAutoDefault(false);
+        loginButton->setFlat(false);
 
         horizontalLayout_3->addWidget(loginButton);
 
@@ -123,6 +125,9 @@ public:
         adminLoginWindow->setStatusBar(statusbar);
 
         retranslateUi(adminLoginWindow);
+
+        loginButton->setDefault(false);
+
 
         QMetaObject::connectSlotsByName(adminLoginWindow);
     } // setupUi

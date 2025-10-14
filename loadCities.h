@@ -20,6 +20,12 @@ using namespace std;
 struct Admin{
     QString user;
     QString passkey;
+
+    Admin(QString name, QString phrase)
+    {
+        user = name;
+        passkey = phrase;
+    }
 };
 
 struct Purchase {
@@ -136,6 +142,6 @@ City* findCity(std::vector<City> &cities, const std::string &name);
 void loadCities(const std::string &filename, std::vector<City> &cities);
 void loadDistances(const std::string &filename, std::vector<City> &cities);
 void loadFoods(const std::string &filename, std::vector<City> &cities);
-void loadAdmin(const std::string &filename, const std::vector<Admin> &admins);
+void loadAdmin(const std::string &filename, std::vector<Admin> &admins);
 
 #endif // LOADCITIES_H

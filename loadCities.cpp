@@ -1,6 +1,8 @@
 #include "loadCities.h"
 
-void loadAdmin(const std::string &filename, const std::vector<Admin> &admins)
+#include <vector>
+
+void loadAdmin(const std::string &filename, std::vector<Admin> &admins)
 {
     ifstream file(filename);
     if (!file.is_open())
@@ -10,7 +12,6 @@ void loadAdmin(const std::string &filename, const std::vector<Admin> &admins)
     }
 
     string line;
-    getline(file, line); // skip the header
 
     while (std::getline(file, line))
     {
@@ -20,6 +21,8 @@ void loadAdmin(const std::string &filename, const std::vector<Admin> &admins)
         getline(stream, username, ',');
         getline(stream, password);
         qDebug() << username << password;
+
+        admins.emplace_back(QString::fromStdString(username), QString::fromStdString(password));
     }
 
     file.close();

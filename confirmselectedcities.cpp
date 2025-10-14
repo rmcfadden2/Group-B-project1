@@ -68,7 +68,7 @@ void confirmSelectedCities::on_buttonBox_accepted()
         qDebug() << "Old geometry:" << oldGeometry;
 
         // Open the new window in the same spot and size
-        guestWcustom3 *window = new guestWcustom3(startCity, cities);
+        guestWcustom3 *window = new guestWcustom3(startCity, cities, parent);
         window->setGeometry(oldGeometry);
         window->show();
 

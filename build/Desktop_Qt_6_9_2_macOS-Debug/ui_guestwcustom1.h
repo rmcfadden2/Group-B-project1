@@ -43,6 +43,7 @@ public:
     QLabel *startingCityLabel;
     QLabel *label_4;
     QListWidget *foodsWidget;
+    QLabel *warningLabel;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -121,6 +122,9 @@ public:
         foodsWidget = new QListWidget(centralwidget);
         foodsWidget->setObjectName("foodsWidget");
         foodsWidget->setGeometry(QRect(510, 290, 241, 171));
+        warningLabel = new QLabel(centralwidget);
+        warningLabel->setObjectName("warningLabel");
+        warningLabel->setGeometry(QRect(117, 450, 261, 20));
         guestWcustom1->setCentralWidget(centralwidget);
         menubar = new QMenuBar(guestWcustom1);
         menubar->setObjectName("menubar");
@@ -145,6 +149,7 @@ public:
         label_2->setText(QCoreApplication::translate("guestWcustom1", "Selected City: ", nullptr));
         startingCityLabel->setText(QString());
         label_4->setText(QCoreApplication::translate("guestWcustom1", "Foods:", nullptr));
+        warningLabel->setText(QString());
     } // retranslateUi
 
 };

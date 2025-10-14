@@ -1,0 +1,45 @@
+# Qt / C++ build artifacts
+build-*/
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+*.exe
+*.app
+*.a
+*.lib
+*.ncb
+*.sdf
+*.pdb
+*.idb
+
+# Qt Creator project files
+*.pro.user
+*.user
+*.qbs.user
+*.qmlproject.user
+*.creator.user
+*.autosave
+*.qmake.stash
+
+# CMake build files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Other generated folders
+.moc/
+.qrc/
+.ui/
+*.qrc.dep
+*.moc
+*.obj
+*.qmlc
+*.jsc
+
+# Logs and OS junk
+*.log
+.DS_Store
+Thumbs.db

@@ -114,11 +114,19 @@ void guestWcustom1::on_backButton_clicked()
 
 void guestWcustom1::on_nextButton_clicked()
 {
-    guestWcustom2 *window = new guestWcustom2(startingCity, citiesData);
+    if(startingCity.getName() == "empty")
+    {
+        ui->warningLabel->setText("Please select a city before continuing!");
+    }
+    else
+    {
+        guestWcustom2 *window = new guestWcustom2(startingCity, citiesData);
 
-    window->setGeometry(this->geometry());
+        window->setGeometry(this->geometry());
 
-    window->show();
-    this->close();
+        window->show();
+        this->close();
+    }
+
 }
 

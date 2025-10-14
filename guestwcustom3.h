@@ -18,7 +18,7 @@ class guestWcustom3 : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit guestWcustom3(City start, vector<City> &data, QWidget *parent = nullptr);
+    explicit guestWcustom3(City start, vector<City> &data, QWidget *callerWindow = nullptr, QWidget *parent = nullptr);
     ~guestWcustom3();
 
 private:
@@ -30,12 +30,15 @@ private:
     vector<string> purchasedCities;
     double totalCost = 0.0;
 
+    QWidget *caller;
+
     void populateCityButtons();              // buttons for cities in scroll area
 
 private slots:
     void displayFoodsForCity(const City &city);
     void on_purchaseButton_clicked();    // add selected food to cart
     void on_checkoutButton_clicked();
+    void on_backButton_clicked();
 };
 
 #endif // GUESTWCUSTOM3_H

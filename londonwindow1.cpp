@@ -116,7 +116,6 @@ void londonWindow1::on_selectButton_clicked()
     totalDist = 0;
     plannedRoute = findClosestRoute(startingCity.getName(), citiesData, totalDist);
     populateCityButtons();
-    ui->distLabel->setText(QString::number(totalDist));
     amountSpecified = true;
 }
 
@@ -165,7 +164,7 @@ void londonWindow1::on_continueButton_clicked()
 
         qDebug() << "Launching guestWcustom3 with" << plannedCities.size() << "cities";
 
-        guestWcustom3 *window = new guestWcustom3(startingCity, plannedCities);
+        guestWcustom3 *window = new guestWcustom3(startingCity, plannedCities, this);
         window->setGeometry(this->geometry());
 
         window->show();

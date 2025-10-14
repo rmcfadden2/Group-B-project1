@@ -43,6 +43,7 @@ public:
     QSpinBox *quantitySpinBox;
     QPushButton *purchaseButton;
     QLabel *purchaseWarningLabel;
+    QPushButton *backButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -107,6 +108,9 @@ public:
         purchaseWarningLabel = new QLabel(centralwidget);
         purchaseWarningLabel->setObjectName("purchaseWarningLabel");
         purchaseWarningLabel->setGeometry(QRect(227, 450, 131, 20));
+        backButton = new QPushButton(centralwidget);
+        backButton->setObjectName("backButton");
+        backButton->setGeometry(QRect(550, 490, 100, 32));
         guestWcustom3->setCentralWidget(centralwidget);
         menubar = new QMenuBar(guestWcustom3);
         menubar->setObjectName("menubar");
@@ -130,6 +134,7 @@ public:
         label_3->setText(QCoreApplication::translate("guestWcustom3", "Quantity", nullptr));
         purchaseButton->setText(QCoreApplication::translate("guestWcustom3", "Purchase", nullptr));
         purchaseWarningLabel->setText(QString());
+        backButton->setText(QCoreApplication::translate("guestWcustom3", "Back", nullptr));
     } // retranslateUi
 
 };

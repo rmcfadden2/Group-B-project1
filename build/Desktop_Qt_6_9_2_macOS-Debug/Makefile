@@ -52,7 +52,11 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../adminloginwindow.cpp \
+SOURCES       = ../../admincitiesedit.cpp \
+		../../adminfoodedit.cpp \
+		../../adminloginwindow.cpp \
+		../../adminmainwindow.cpp \
+		../../adminutilities.cpp \
 		../../checkoutdialog.cpp \
 		../../confirmselectedcities.cpp \
 		../../guestmainwindow.cpp \
@@ -65,7 +69,10 @@ SOURCES       = ../../adminloginwindow.cpp \
 		../../londonwindow1.cpp \
 		../../main.cpp \
 		../../mainwindow.cpp \
-		../../pariswindow1.cpp moc_adminloginwindow.cpp \
+		../../pariswindow1.cpp moc_admincitiesedit.cpp \
+		moc_adminfoodedit.cpp \
+		moc_adminloginwindow.cpp \
+		moc_adminmainwindow.cpp \
 		moc_checkoutdialog.cpp \
 		moc_confirmselectedcities.cpp \
 		moc_guestmainwindow.cpp \
@@ -77,7 +84,11 @@ SOURCES       = ../../adminloginwindow.cpp \
 		moc_londonwindow1.cpp \
 		moc_mainwindow.cpp \
 		moc_pariswindow1.cpp
-OBJECTS       = adminloginwindow.o \
+OBJECTS       = admincitiesedit.o \
+		adminfoodedit.o \
+		adminloginwindow.o \
+		adminmainwindow.o \
+		adminutilities.o \
 		checkoutdialog.o \
 		confirmselectedcities.o \
 		guestmainwindow.o \
@@ -91,7 +102,10 @@ OBJECTS       = adminloginwindow.o \
 		main.o \
 		mainwindow.o \
 		pariswindow1.o \
+		moc_admincitiesedit.o \
+		moc_adminfoodedit.o \
 		moc_adminloginwindow.o \
+		moc_adminmainwindow.o \
 		moc_checkoutdialog.o \
 		moc_confirmselectedcities.o \
 		moc_guestmainwindow.o \
@@ -103,9 +117,11 @@ OBJECTS       = adminloginwindow.o \
 		moc_londonwindow1.o \
 		moc_mainwindow.o \
 		moc_pariswindow1.o
-DIST          = ../../admin.txt \
+DIST          = ../../.gitignore \
+		../../admin.txt \
 		../../distances.txt \
 		../../foods.txt \
+		../../new_cities.txt \
 		/Qt/6.9.2/macos/mkspecs/features/spec_pre.prf \
 		/Qt/6.9.2/macos/mkspecs/features/device_config.prf \
 		/Qt/6.9.2/macos/mkspecs/common/unix.conf \
@@ -354,7 +370,11 @@ DIST          = ../../admin.txt \
 		/Qt/6.9.2/macos/mkspecs/features/exceptions.prf \
 		/Qt/6.9.2/macos/mkspecs/features/yacc.prf \
 		/Qt/6.9.2/macos/mkspecs/features/lex.prf \
-		../../../../EuropeanVacationProj.pro ../../adminloginwindow.h \
+		../../../../EuropeanVacationProj.pro ../../admincitiesedit.h \
+		../../adminfoodedit.h \
+		../../adminloginwindow.h \
+		../../adminmainwindow.h \
+		../../adminutilities.h \
 		../../checkoutdialog.h \
 		../../confirmselectedcities.h \
 		../../guestmainwindow.h \
@@ -366,7 +386,11 @@ DIST          = ../../admin.txt \
 		../../loadCities.h \
 		../../londonwindow1.h \
 		../../mainwindow.h \
-		../../pariswindow1.h ../../adminloginwindow.cpp \
+		../../pariswindow1.h ../../admincitiesedit.cpp \
+		../../adminfoodedit.cpp \
+		../../adminloginwindow.cpp \
+		../../adminmainwindow.cpp \
+		../../adminutilities.cpp \
 		../../checkoutdialog.cpp \
 		../../confirmselectedcities.cpp \
 		../../guestmainwindow.cpp \
@@ -400,7 +424,7 @@ include /Users/robertmcfadden/Qt/6.9.2/macos/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-EuropeanVacationProj.app/Contents/MacOS/EuropeanVacationProj: ui_adminloginwindow.h ui_checkoutdialog.h ui_confirmselectedcities.h ui_guestmainwindow.h ui_guestwcustom1.h ui_guestwcustom2.h ui_guestwcustom3.h ui_guestwcustom4.h ui_guestwplanned1.h ui_londonwindow1.h ui_mainwindow.h ui_pariswindow1.h $(OBJECTS)  
+EuropeanVacationProj.app/Contents/MacOS/EuropeanVacationProj: ui_admincitiesedit.h ui_adminfoodedit.h ui_adminloginwindow.h ui_adminmainwindow.h ui_checkoutdialog.h ui_confirmselectedcities.h ui_guestmainwindow.h ui_guestwcustom1.h ui_guestwcustom2.h ui_guestwcustom3.h ui_guestwcustom4.h ui_guestwplanned1.h ui_londonwindow1.h ui_mainwindow.h ui_pariswindow1.h $(OBJECTS)  
 	@test -d EuropeanVacationProj.app/Contents/MacOS/ || mkdir -p EuropeanVacationProj.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET)  $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -933,9 +957,9 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../adminloginwindow.h ../../checkoutdialog.h ../../confirmselectedcities.h ../../guestmainwindow.h ../../guestwcustom1.h ../../guestwcustom2.h ../../guestwcustom3.h ../../guestwcustom4.h ../../guestwplanned1.h ../../loadCities.h ../../londonwindow1.h ../../mainwindow.h ../../pariswindow1.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../adminloginwindow.cpp ../../checkoutdialog.cpp ../../confirmselectedcities.cpp ../../guestmainwindow.cpp ../../guestwcustom1.cpp ../../guestwcustom2.cpp ../../guestwcustom3.cpp ../../guestwcustom4.cpp ../../guestwplanned1.cpp ../../loadCities.cpp ../../londonwindow1.cpp ../../main.cpp ../../mainwindow.cpp ../../pariswindow1.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../adminloginwindow.ui ../../checkoutdialog.ui ../../confirmselectedcities.ui ../../guestmainwindow.ui ../../guestwcustom1.ui ../../guestwcustom2.ui ../../guestwcustom3.ui ../../guestwcustom4.ui ../../guestwplanned1.ui ../../londonwindow1.ui ../../mainwindow.ui ../../pariswindow1.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../../admincitiesedit.h ../../adminfoodedit.h ../../adminloginwindow.h ../../adminmainwindow.h ../../adminutilities.h ../../checkoutdialog.h ../../confirmselectedcities.h ../../guestmainwindow.h ../../guestwcustom1.h ../../guestwcustom2.h ../../guestwcustom3.h ../../guestwcustom4.h ../../guestwplanned1.h ../../loadCities.h ../../londonwindow1.h ../../mainwindow.h ../../pariswindow1.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../admincitiesedit.cpp ../../adminfoodedit.cpp ../../adminloginwindow.cpp ../../adminmainwindow.cpp ../../adminutilities.cpp ../../checkoutdialog.cpp ../../confirmselectedcities.cpp ../../guestmainwindow.cpp ../../guestwcustom1.cpp ../../guestwcustom2.cpp ../../guestwcustom3.cpp ../../guestwcustom4.cpp ../../guestwplanned1.cpp ../../loadCities.cpp ../../londonwindow1.cpp ../../main.cpp ../../mainwindow.cpp ../../pariswindow1.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../admincitiesedit.ui ../../adminfoodedit.ui ../../adminloginwindow.ui ../../adminmainwindow.ui ../../checkoutdialog.ui ../../confirmselectedcities.ui ../../guestmainwindow.ui ../../guestwcustom1.ui ../../guestwcustom2.ui ../../guestwcustom3.ui ../../guestwcustom4.ui ../../guestwplanned1.ui ../../londonwindow1.ui ../../mainwindow.ui ../../pariswindow1.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -964,9 +988,21 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_adminloginwindow.cpp moc_checkoutdialog.cpp moc_confirmselectedcities.cpp moc_guestmainwindow.cpp moc_guestwcustom1.cpp moc_guestwcustom2.cpp moc_guestwcustom3.cpp moc_guestwcustom4.cpp moc_guestwplanned1.cpp moc_londonwindow1.cpp moc_mainwindow.cpp moc_pariswindow1.cpp
+compiler_moc_header_make_all: moc_admincitiesedit.cpp moc_adminfoodedit.cpp moc_adminloginwindow.cpp moc_adminmainwindow.cpp moc_checkoutdialog.cpp moc_confirmselectedcities.cpp moc_guestmainwindow.cpp moc_guestwcustom1.cpp moc_guestwcustom2.cpp moc_guestwcustom3.cpp moc_guestwcustom4.cpp moc_guestwplanned1.cpp moc_londonwindow1.cpp moc_mainwindow.cpp moc_pariswindow1.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_adminloginwindow.cpp moc_checkoutdialog.cpp moc_confirmselectedcities.cpp moc_guestmainwindow.cpp moc_guestwcustom1.cpp moc_guestwcustom2.cpp moc_guestwcustom3.cpp moc_guestwcustom4.cpp moc_guestwplanned1.cpp moc_londonwindow1.cpp moc_mainwindow.cpp moc_pariswindow1.cpp
+	-$(DEL_FILE) moc_admincitiesedit.cpp moc_adminfoodedit.cpp moc_adminloginwindow.cpp moc_adminmainwindow.cpp moc_checkoutdialog.cpp moc_confirmselectedcities.cpp moc_guestmainwindow.cpp moc_guestwcustom1.cpp moc_guestwcustom2.cpp moc_guestwcustom3.cpp moc_guestwcustom4.cpp moc_guestwplanned1.cpp moc_londonwindow1.cpp moc_mainwindow.cpp moc_pariswindow1.cpp
+moc_admincitiesedit.cpp: ../../admincitiesedit.h \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt/6.9.2/macos/libexec/moc
+	/Users/robertmcfadden/Qt/6.9.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=201402L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=17 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/robertmcfadden/Qt/6.9.2/macos/mkspecs/macx-clang -I/Users/robertmcfadden/Qtfolders/EuropeanVacationProj -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtWidgets.framework/Headers -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtGui.framework/Headers -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/robertmcfadden/Qt/6.9.2/macos/lib ../../admincitiesedit.h -o moc_admincitiesedit.cpp
+
+moc_adminfoodedit.cpp: ../../adminfoodedit.h \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt/6.9.2/macos/libexec/moc
+	/Users/robertmcfadden/Qt/6.9.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=201402L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=17 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/robertmcfadden/Qt/6.9.2/macos/mkspecs/macx-clang -I/Users/robertmcfadden/Qtfolders/EuropeanVacationProj -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtWidgets.framework/Headers -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtGui.framework/Headers -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/robertmcfadden/Qt/6.9.2/macos/lib ../../adminfoodedit.h -o moc_adminfoodedit.cpp
+
 moc_adminloginwindow.cpp: ../../adminloginwindow.h \
 		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -975,6 +1011,12 @@ moc_adminloginwindow.cpp: ../../adminloginwindow.h \
 		../../../../Qt/6.9.2/macos/lib/QtCore.framework/Headers/qdebug.h \
 		../../../../Qt/6.9.2/macos/libexec/moc
 	/Users/robertmcfadden/Qt/6.9.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=201402L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=17 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/robertmcfadden/Qt/6.9.2/macos/mkspecs/macx-clang -I/Users/robertmcfadden/Qtfolders/EuropeanVacationProj -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtWidgets.framework/Headers -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtGui.framework/Headers -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/robertmcfadden/Qt/6.9.2/macos/lib ../../adminloginwindow.h -o moc_adminloginwindow.cpp
+
+moc_adminmainwindow.cpp: ../../adminmainwindow.h \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../../Qt/6.9.2/macos/libexec/moc
+	/Users/robertmcfadden/Qt/6.9.2/macos/libexec/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=201402L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=17 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/robertmcfadden/Qt/6.9.2/macos/mkspecs/macx-clang -I/Users/robertmcfadden/Qtfolders/EuropeanVacationProj -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtWidgets.framework/Headers -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtGui.framework/Headers -I/Users/robertmcfadden/Qt/6.9.2/macos/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/robertmcfadden/Qt/6.9.2/macos/lib ../../adminmainwindow.h -o moc_adminmainwindow.cpp
 
 moc_checkoutdialog.cpp: ../../checkoutdialog.h \
 		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QDialog \
@@ -1084,12 +1126,24 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_adminloginwindow.h ui_checkoutdialog.h ui_confirmselectedcities.h ui_guestmainwindow.h ui_guestwcustom1.h ui_guestwcustom2.h ui_guestwcustom3.h ui_guestwcustom4.h ui_guestwplanned1.h ui_londonwindow1.h ui_mainwindow.h ui_pariswindow1.h
+compiler_uic_make_all: ui_admincitiesedit.h ui_adminfoodedit.h ui_adminloginwindow.h ui_adminmainwindow.h ui_checkoutdialog.h ui_confirmselectedcities.h ui_guestmainwindow.h ui_guestwcustom1.h ui_guestwcustom2.h ui_guestwcustom3.h ui_guestwcustom4.h ui_guestwplanned1.h ui_londonwindow1.h ui_mainwindow.h ui_pariswindow1.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_adminloginwindow.h ui_checkoutdialog.h ui_confirmselectedcities.h ui_guestmainwindow.h ui_guestwcustom1.h ui_guestwcustom2.h ui_guestwcustom3.h ui_guestwcustom4.h ui_guestwplanned1.h ui_londonwindow1.h ui_mainwindow.h ui_pariswindow1.h
+	-$(DEL_FILE) ui_admincitiesedit.h ui_adminfoodedit.h ui_adminloginwindow.h ui_adminmainwindow.h ui_checkoutdialog.h ui_confirmselectedcities.h ui_guestmainwindow.h ui_guestwcustom1.h ui_guestwcustom2.h ui_guestwcustom3.h ui_guestwcustom4.h ui_guestwplanned1.h ui_londonwindow1.h ui_mainwindow.h ui_pariswindow1.h
+ui_admincitiesedit.h: ../../admincitiesedit.ui \
+		../../../../Qt/6.9.2/macos/libexec/uic
+	/Users/robertmcfadden/Qt/6.9.2/macos/libexec/uic ../../admincitiesedit.ui -o ui_admincitiesedit.h
+
+ui_adminfoodedit.h: ../../adminfoodedit.ui \
+		../../../../Qt/6.9.2/macos/libexec/uic
+	/Users/robertmcfadden/Qt/6.9.2/macos/libexec/uic ../../adminfoodedit.ui -o ui_adminfoodedit.h
+
 ui_adminloginwindow.h: ../../adminloginwindow.ui \
 		../../../../Qt/6.9.2/macos/libexec/uic
 	/Users/robertmcfadden/Qt/6.9.2/macos/libexec/uic ../../adminloginwindow.ui -o ui_adminloginwindow.h
+
+ui_adminmainwindow.h: ../../adminmainwindow.ui \
+		../../../../Qt/6.9.2/macos/libexec/uic
+	/Users/robertmcfadden/Qt/6.9.2/macos/libexec/uic ../../adminmainwindow.ui -o ui_adminmainwindow.h
 
 ui_checkoutdialog.h: ../../checkoutdialog.ui \
 		../../../../Qt/6.9.2/macos/libexec/uic
@@ -1147,6 +1201,19 @@ compiler_clean: compiler_moc_header_clean compiler_uic_clean
 
 ####### Compile
 
+admincitiesedit.o: ../../admincitiesedit.cpp ../../admincitiesedit.h \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_admincitiesedit.h \
+		../../adminutilities.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o admincitiesedit.o ../../admincitiesedit.cpp
+
+adminfoodedit.o: ../../adminfoodedit.cpp ../../adminfoodedit.h \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_adminfoodedit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o adminfoodedit.o ../../adminfoodedit.cpp
+
 adminloginwindow.o: ../../adminloginwindow.cpp ../../adminloginwindow.h \
 		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -1154,8 +1221,24 @@ adminloginwindow.o: ../../adminloginwindow.cpp ../../adminloginwindow.h \
 		../../../../Qt/6.9.2/macos/lib/QtCore.framework/Headers/QDebug \
 		../../../../Qt/6.9.2/macos/lib/QtCore.framework/Headers/qdebug.h \
 		ui_adminloginwindow.h \
-		../../mainwindow.h
+		../../mainwindow.h \
+		../../adminmainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o adminloginwindow.o ../../adminloginwindow.cpp
+
+adminmainwindow.o: ../../adminmainwindow.cpp ../../adminmainwindow.h \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_adminmainwindow.h \
+		../../adminloginwindow.h \
+		../../loadCities.h \
+		../../../../Qt/6.9.2/macos/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt/6.9.2/macos/lib/QtCore.framework/Headers/qdebug.h \
+		../../admincitiesedit.h \
+		../../adminfoodedit.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o adminmainwindow.o ../../adminmainwindow.cpp
+
+adminutilities.o: ../../adminutilities.cpp ../../adminutilities.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o adminutilities.o ../../adminutilities.cpp
 
 checkoutdialog.o: ../../checkoutdialog.cpp ../../checkoutdialog.h \
 		../../../../Qt/6.9.2/macos/lib/QtWidgets.framework/Headers/QDialog \
@@ -1331,8 +1414,17 @@ pariswindow1.o: ../../pariswindow1.cpp ../../pariswindow1.h \
 		../../../../Qt/6.9.2/macos/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pariswindow1.o ../../pariswindow1.cpp
 
+moc_admincitiesedit.o: moc_admincitiesedit.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_admincitiesedit.o moc_admincitiesedit.cpp
+
+moc_adminfoodedit.o: moc_adminfoodedit.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_adminfoodedit.o moc_adminfoodedit.cpp
+
 moc_adminloginwindow.o: moc_adminloginwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_adminloginwindow.o moc_adminloginwindow.cpp
+
+moc_adminmainwindow.o: moc_adminmainwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_adminmainwindow.o moc_adminmainwindow.cpp
 
 moc_checkoutdialog.o: moc_checkoutdialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_checkoutdialog.o moc_checkoutdialog.cpp

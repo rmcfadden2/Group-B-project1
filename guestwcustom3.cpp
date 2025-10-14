@@ -12,8 +12,8 @@
 
 using namespace std;
 
-guestWcustom3::guestWcustom3(City start, vector<City> &data, QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::guestWcustom3), cities(data), startCity(start), currentCity("empty")
+guestWcustom3::guestWcustom3(City start, vector<City> &data, QWidget *callerWindow, QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::guestWcustom3), cities(data), startCity(start), currentCity("empty"), caller(callerWindow)
 {
     // Make an explicit local copy immediately
     std::vector<City> localCities = data;
@@ -207,5 +207,14 @@ void guestWcustom3::on_checkoutButton_clicked()
 {
     checkoutDialog dialog(cart, purchasedCities, totalCost, cities, startCity, this);
     dialog.exec();  // modal dialog
+}
+
+
+void guestWcustom3::on_backButton_clicked()
+{
+    if (caller) {
+        caller->show();  // show the original window again
+    }
+    this->close();
 }
 

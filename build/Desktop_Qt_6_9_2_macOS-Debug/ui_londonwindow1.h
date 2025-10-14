@@ -41,7 +41,6 @@ public:
     QPushButton *continueButton;
     QLabel *label_2;
     QLabel *warningLabel;
-    QLabel *distLabel;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -103,9 +102,6 @@ public:
         warningLabel->setObjectName("warningLabel");
         warningLabel->setGeometry(QRect(130, 470, 481, 20));
         warningLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        distLabel = new QLabel(centralwidget);
-        distLabel->setObjectName("distLabel");
-        distLabel->setGeometry(QRect(680, 210, 58, 16));
         londonWindow1->setCentralWidget(centralwidget);
         menubar = new QMenuBar(londonWindow1);
         menubar->setObjectName("menubar");
@@ -129,7 +125,6 @@ public:
         continueButton->setText(QCoreApplication::translate("londonWindow1", "Continue", nullptr));
         label_2->setText(QCoreApplication::translate("londonWindow1", "Your Trip Starting From London", nullptr));
         warningLabel->setText(QString());
-        distLabel->setText(QString());
     } // retranslateUi
 
 };
