@@ -16,6 +16,9 @@ void addCity(string newCity)
     ofstream outputFile("distances.csv", ios::app);
     string line;
 
+    // bool to check if city was successfully added
+    bool cityAdded = false;
+
     // Error if file could not be opened
     if (!inputFile.is_open() || !outputFile.is_open()) {
         cout << "Error: Could not open new_cities.csv" << endl;
@@ -26,23 +29,58 @@ void addCity(string newCity)
     while (getline(inputFile, line))
     {
         stringstream ss(line);
-        string cell;
+        string city1, city2, distance;
+        bool dupeFound = false;
 
-        // get first city
-        if (getline(ss, cell, ','))
+        getline(ss, city1, ',');
+        getline(ss, city2, ',');
+        getline(ss, distance, ',');
+
+        // check if first or second city matches the new city
+        if (newCity == city1 || newCity == city2)
         {
-            if (newCity == cell)
+            // open file each time while looping
+            // input file for checking for dupes in distances
+            ifstream inputFile2("distances.csv");
+            string line2;
+
+            while (getline(inputFile2, line2))
+            {
+                stringstream ss(line2);
+                if (line == line2)
+                {
+                    // test to look for dupes
+                    // cout << "dupe found: " << line2 << endl;
+                    dupeFound = true;
+                }
+            }
+
+            //close file after looping
+            inputFile2.close();
+
+            // only enter if dupe is not found
+            if (dupeFound == false)
             {
                 // write whole line into file
                 outputFile << line << endl;
-                cout << line << endl;
+
+                // test to see what was added
+                // cout << line << endl;
+                cityAdded = true;
             }
+
         }
+
     }
 
     // close files
     inputFile.close();
     outputFile.close();
+
+    if (cityAdded)
+        cout << newCity << " was successfully added" << endl;
+    else
+        cout << "Could not add " << newCity << endl;
 
     return;
 }
@@ -244,6 +282,8 @@ void deleteFood(string foodItem)
 int main()
 {
     //addCity("Vienna");
+    //addCity("Stockholm");
+
 
     //editFoodPrice("Pretzels", 10.01);
 
@@ -251,7 +291,9 @@ int main()
 
     //addFood("Berlin", "Cheese", 6.70);
 
-    deleteCity("Vienna");
+    //deleteCity("Vienna");
+    //deleteCity("Stockholm");
+
 
     return 0;
 }
